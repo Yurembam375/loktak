@@ -9,15 +9,15 @@ const actsAndRulesLinks = ["Loktak Protection Act 2006", "Loktak Protection Rule
 
 function getNavHref(item: string) {
   if (item === "Projects") {
-    return "/projects";
+    return "/projects/";
   }
 
   if (item === "News & Events") {
-    return "/events";
+    return "/events/";
   }
 
   if (item === "Notifications") {
-    return "/notifications";
+    return "/notifications/";
   }
 
   if (item === "Contact") {
