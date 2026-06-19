@@ -16,14 +16,14 @@ export function LoktakLakeSection() {
         />
         <div className="absolute inset-0 bg-black/24" />
         <div className="relative flex min-h-[520px] items-center justify-center px-6 text-center md:min-h-[650px]">
-          <div className="w-full max-w-4xl">
-            <h1 className="font-serif text-4xl font-bold leading-none tracking-[-0.01em] md:text-6xl">
+          <div className="w-full max-w-3xl">
+            <h1 className="font-serif text-4xl font-bold leading-none tracking-[-0.01em] text-white drop-shadow-[0_4px_18px_rgba(0,0,0,0.28)] md:text-6xl">
               Loktak Lake
             </h1>
-            <p className="mt-5 text-xl font-bold leading-none md:text-3xl">
+            <p className="mt-4 font-sans text-lg font-medium leading-none tracking-normal text-white/92 drop-shadow-[0_3px_14px_rgba(0,0,0,0.28)] md:text-2xl">
               Lifeline of Manipur
             </p>
-            <div className="mx-auto mt-8 h-px max-w-xl bg-white/85" />
+            <div className="mx-auto mt-7 h-px max-w-[360px] bg-white/70" />
           </div>
         </div>
       </section>

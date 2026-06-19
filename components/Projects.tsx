@@ -14,7 +14,7 @@ export function Projects() {
               Activities and management interventions.
             </p>
           </div>
-          <div className="hidden h-[264px] w-px bg-black/70 md:block" />
+          <div className="hidden h-[150px] w-px bg-black/70 md:block" />
 
           <p className="max-w-[980px] text-base leading-8 text-ink/70">
             The Authority, over the years, has grown into a professional lake management
@@ -24,7 +24,7 @@ export function Projects() {
           </p>
         </div>
 
-        <article className="mt-16 grid gap-12 lg:grid-cols-[0.95fr_0.85fr] lg:items-start lg:gap-32">
+        <article className="mt-8 grid gap-12 lg:grid-cols-[0.95fr_0.85fr] lg:items-start lg:gap-32">
           <div className="group overflow-hidden">
             <img
               src="/images/project-stap.png"
@@ -33,7 +33,7 @@ export function Projects() {
             />
           </div>
 
-          <div className="h-[70vh] overflow-y-scroll pt-8 lg:pt-28">
+          <div className="h-[70vh] overflow-y-scroll pt-8 lg:pt-16">
             <h2 className="font-serif text-4xl font-bold leading-none tracking-[-0.01em] text-ink md:text-6xl">
               The Short Term Action Plan (STAP)
             </h2>

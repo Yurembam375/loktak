@@ -1,10 +1,12 @@
 "use client";
 
 import { ChevronDown, Menu, X } from "lucide-react";
-import { useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { navItems } from "@/lib/site-data";
 
-const dropdownItems = ["About Loktak", "Wetland Complex", "Acts & Rules", "Projects", "Conservation", "Publications", "Gallery", "News & Events"];
+type DropdownKey = "about" | "wetland" | "acts" | "publications";
+
+const dropdownItems = ["About Loktak", "Wetland Complex", "Acts & Rules", "Publications"];
 const aboutLinks = [
   {
     label: "LDA",
@@ -105,15 +107,49 @@ function getNavHref(item: string) {
 }
 
 export function Navbar() {
+  const headerRef = useRef<HTMLElement>(null);
   const [open, setOpen] = useState(false);
-  const [aboutOpen, setAboutOpen] = useState(false);
-  const [wetlandOpen, setWetlandOpen] = useState(false);
-  const [actsOpen, setActsOpen] = useState(false);
-  const [publicationsOpen, setPublicationsOpen] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState<DropdownKey | null>(null);
   const [newsletterOpen, setNewsletterOpen] = useState(false);
+  const aboutOpen = activeDropdown === "about";
+  const wetlandOpen = activeDropdown === "wetland";
+  const actsOpen = activeDropdown === "acts";
+  const publicationsOpen = activeDropdown === "publications";
+
+  const closeDropdowns = useCallback(() => {
+    setActiveDropdown(null);
+    setNewsletterOpen(false);
+  }, []);
+
+  const toggleDropdown = useCallback((dropdown: DropdownKey) => {
+    setActiveDropdown((current) => (current === dropdown ? null : dropdown));
+    setNewsletterOpen(false);
+  }, []);
+
+  useEffect(() => {
+    const handlePointerDown = (event: PointerEvent) => {
+      if (!headerRef.current?.contains(event.target as Node)) {
+        closeDropdowns();
+      }
+    };
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        closeDropdowns();
+      }
+    };
+
+    document.addEventListener("pointerdown", handlePointerDown);
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.removeEventListener("pointerdown", handlePointerDown);
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [closeDropdowns]);
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-[#08171D66] text-white shadow-lg backdrop-blur-[14px]">
+    <header ref={headerRef} className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-[#08171D66] text-white shadow-lg backdrop-blur-[14px]">
       <nav className="mx-auto flex h-[88px] max-w-[1516px] items-center justify-between px-4 lg:px-6">
         <a href="/" className="flex min-w-[210px] items-center gap-2">
           <img className="h-20 w-20 object-contain" src="/images/image 16 (1).png" alt="Loktak Development Authority logo" />
@@ -138,11 +174,7 @@ export function Navbar() {
                       aboutOpen ? "border-white text-white" : "border-transparent"
                     }`}
                     onClick={() => {
-                      setAboutOpen((value) => !value);
-                      setWetlandOpen(false);
-                      setActsOpen(false);
-                      setPublicationsOpen(false);
-                      setNewsletterOpen(false);
+                      toggleDropdown("about");
                     }}
                     aria-expanded={aboutOpen}
                   >
@@ -157,7 +189,7 @@ export function Navbar() {
                           key={link.label}
                           href={link.href}
                           className="block rounded-md px-1 py-1.5 transition hover:text-gold"
-                          onClick={() => setAboutOpen(false)}
+                          onClick={closeDropdowns}
                         >
                           {link.label}
                         </a>
@@ -177,11 +209,7 @@ export function Navbar() {
                       wetlandOpen ? "border-white text-white" : "border-transparent"
                     }`}
                     onClick={() => {
-                      setWetlandOpen((value) => !value);
-                      setAboutOpen(false);
-                      setActsOpen(false);
-                      setPublicationsOpen(false);
-                      setNewsletterOpen(false);
+                      toggleDropdown("wetland");
                     }}
                     aria-expanded={wetlandOpen}
                   >
@@ -196,7 +224,7 @@ export function Navbar() {
                           key={link.label}
                           href={link.href}
                           className="block rounded-md px-1 py-1.5 transition hover:text-gold"
-                          onClick={() => setWetlandOpen(false)}
+                          onClick={closeDropdowns}
                         >
                           {link.label}
                         </a>
@@ -216,11 +244,7 @@ export function Navbar() {
                       actsOpen ? "border-white text-white" : "border-transparent"
                     }`}
                     onClick={() => {
-                      setActsOpen((value) => !value);
-                      setAboutOpen(false);
-                      setWetlandOpen(false);
-                      setPublicationsOpen(false);
-                      setNewsletterOpen(false);
+                      toggleDropdown("acts");
                     }}
                     aria-expanded={actsOpen}
                   >
@@ -237,7 +261,7 @@ export function Navbar() {
                           target="_blank"
                           rel="noreferrer"
                           className="block rounded-md px-1 py-2 font-bold leading-snug transition hover:text-gold"
-                          onClick={() => setActsOpen(false)}
+                          onClick={closeDropdowns}
                         >
                           {link.label}
                         </a>
@@ -257,11 +281,7 @@ export function Navbar() {
                       publicationsOpen ? "border-white text-white" : "border-transparent"
                     }`}
                     onClick={() => {
-                      setPublicationsOpen((value) => !value);
-                      setNewsletterOpen(false);
-                      setAboutOpen(false);
-                      setWetlandOpen(false);
-                      setActsOpen(false);
+                      toggleDropdown("publications");
                     }}
                     aria-expanded={publicationsOpen}
                   >
@@ -277,10 +297,7 @@ export function Navbar() {
                           target="_blank"
                           rel="noopener noreferrer"
                           className="block rounded-md px-1 py-1.5 font-bold transition hover:text-gold"
-                          onClick={() => {
-                            setPublicationsOpen(false);
-                            setNewsletterOpen(false);
-                          }}
+                          onClick={closeDropdowns}
                         >
                           {publicationMenuItems[0].label}
                         </a>
@@ -296,7 +313,8 @@ export function Navbar() {
                             <ChevronDown size={14} strokeWidth={2.5} className="-rotate-90" />
                           </button>
                           {newsletterOpen ? (
-                            <div className="absolute left-full top-0 ml-3 w-[220px] rounded-xl bg-[#08171D]/90 px-5 py-4 text-white shadow-[0_16px_34px_rgba(0,0,0,0.28)] backdrop-blur-[14px] transition duration-200">
+                            <div className="absolute left-full top-0 ml-3 w-[220px] rounded-xl bg-[#08171D]/90 px-6 py-5 text-white shadow-[0_16px_34px_rgba(0,0,0,0.28)] backdrop-blur-[14px] transition duration-200">
+                              <div className="grid gap-2">
                               {newsletterLinks.map((link) => (
                                 <a
                                   key={link.label}
@@ -304,14 +322,12 @@ export function Navbar() {
                                   target="_blank"
                                   rel="noopener noreferrer"
                                   className="block rounded-md py-1 font-bold transition hover:text-gold"
-                                  onClick={() => {
-                                    setPublicationsOpen(false);
-                                    setNewsletterOpen(false);
-                                  }}
+                                  onClick={closeDropdowns}
                                 >
                                   {link.label}
                                 </a>
                               ))}
+                              </div>
                             </div>
                           ) : null}
                         </div>
@@ -321,10 +337,7 @@ export function Navbar() {
                           target="_blank"
                           rel="noopener noreferrer"
                           className="block rounded-md px-1 py-1.5 font-bold transition hover:text-gold"
-                          onClick={() => {
-                            setPublicationsOpen(false);
-                            setNewsletterOpen(false);
-                          }}
+                          onClick={closeDropdowns}
                         >
                           {publicationMenuItems[2].label}
                         </a>
@@ -365,11 +378,7 @@ export function Navbar() {
                       type="button"
                       className="flex w-full items-center justify-between rounded-md px-3 py-2 text-left transition hover:bg-white/8 hover:text-gold"
                       onClick={() => {
-                        setAboutOpen((value) => !value);
-                        setWetlandOpen(false);
-                        setActsOpen(false);
-                        setPublicationsOpen(false);
-                        setNewsletterOpen(false);
+                        toggleDropdown("about");
                       }}
                       aria-expanded={aboutOpen}
                     >
@@ -388,7 +397,7 @@ export function Navbar() {
                             href={link.href}
                             className="rounded-md px-3 py-2 text-white/70 transition hover:bg-white/8 hover:text-gold"
                             onClick={() => {
-                              setAboutOpen(false);
+                              closeDropdowns();
                               setOpen(false);
                             }}
                           >
@@ -408,11 +417,7 @@ export function Navbar() {
                       type="button"
                       className="flex w-full items-center justify-between rounded-md px-3 py-2 text-left transition hover:bg-white/8 hover:text-gold"
                       onClick={() => {
-                        setWetlandOpen((value) => !value);
-                        setAboutOpen(false);
-                        setActsOpen(false);
-                        setPublicationsOpen(false);
-                        setNewsletterOpen(false);
+                        toggleDropdown("wetland");
                       }}
                       aria-expanded={wetlandOpen}
                     >
@@ -431,7 +436,7 @@ export function Navbar() {
                             href={link.href}
                             className="rounded-md px-3 py-2 text-white/70 transition hover:bg-white/8 hover:text-gold"
                             onClick={() => {
-                              setWetlandOpen(false);
+                              closeDropdowns();
                               setOpen(false);
                             }}
                           >
@@ -451,11 +456,7 @@ export function Navbar() {
                       type="button"
                       className="flex w-full items-center justify-between rounded-md px-3 py-2 text-left transition hover:bg-white/8 hover:text-gold"
                       onClick={() => {
-                        setActsOpen((value) => !value);
-                        setAboutOpen(false);
-                        setWetlandOpen(false);
-                        setPublicationsOpen(false);
-                        setNewsletterOpen(false);
+                        toggleDropdown("acts");
                       }}
                       aria-expanded={actsOpen}
                     >
@@ -476,7 +477,7 @@ export function Navbar() {
                             rel="noreferrer"
                             className="rounded-md px-3 py-2 text-white/70 transition hover:bg-white/8 hover:text-gold"
                             onClick={() => {
-                              setActsOpen(false);
+                              closeDropdowns();
                               setOpen(false);
                             }}
                           >
@@ -496,11 +497,7 @@ export function Navbar() {
                       type="button"
                       className="flex w-full items-center justify-between rounded-md px-3 py-2 text-left transition hover:bg-white/8 hover:text-gold"
                       onClick={() => {
-                        setPublicationsOpen((value) => !value);
-                        setNewsletterOpen(false);
-                        setAboutOpen(false);
-                        setWetlandOpen(false);
-                        setActsOpen(false);
+                        toggleDropdown("publications");
                       }}
                       aria-expanded={publicationsOpen}
                     >
@@ -518,7 +515,10 @@ export function Navbar() {
                           target="_blank"
                           rel="noopener noreferrer"
                           className="rounded-md px-3 py-2 font-bold text-white transition hover:bg-white/8 hover:text-gold"
-                          onClick={() => setOpen(false)}
+                          onClick={() => {
+                            closeDropdowns();
+                            setOpen(false);
+                          }}
                         >
                           {publicationMenuItems[0].label}
                         </a>
@@ -538,7 +538,7 @@ export function Navbar() {
                             />
                           </button>
                           {newsletterOpen ? (
-                            <div className="ml-3 grid gap-1 border-l border-white/10 pl-3">
+                            <div className="ml-3 grid gap-2 border-l border-white/10 py-1 pl-3">
                               {newsletterLinks.map((link) => (
                                 <a
                                   key={link.label}
@@ -546,7 +546,10 @@ export function Navbar() {
                                   target="_blank"
                                   rel="noopener noreferrer"
                                   className="rounded-md px-3 py-2 font-bold text-white transition hover:bg-white/8 hover:text-gold"
-                                  onClick={() => setOpen(false)}
+                                  onClick={() => {
+                                    closeDropdowns();
+                                    setOpen(false);
+                                  }}
                                 >
                                   {link.label}
                                 </a>
@@ -560,7 +563,10 @@ export function Navbar() {
                           target="_blank"
                           rel="noopener noreferrer"
                           className="rounded-md px-3 py-2 font-bold text-white transition hover:bg-white/8 hover:text-gold"
-                          onClick={() => setOpen(false)}
+                          onClick={() => {
+                            closeDropdowns();
+                            setOpen(false);
+                          }}
                         >
                           {publicationMenuItems[2].label}
                         </a>
