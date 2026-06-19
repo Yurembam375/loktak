@@ -2,12 +2,18 @@ import { gallery } from "@/lib/site-data";
 import { MotionSection } from "./MotionSection";
 
 export function Gallery() {
-  const frameClass = "overflow-hidden rounded-[24px] shadow-card";
-  const imageClass = "h-full w-full scale-[1.16] object-cover";
+  const frameClass = "group relative overflow-hidden rounded-[32px]";
+  const imageClass = "progressive-image-zoom absolute inset-0 h-full w-full object-cover";
 
   return (
-    <MotionSection id="gallery" className="bg-white py-16 md:py-20">
-      <div className="mx-auto max-w-[1540px] px-5 lg:px-8">
+    <MotionSection id="gallery" className="relative overflow-hidden bg-white py-16 md:py-20">
+      <img
+        src="/images/gallery-lotus-background.png"
+        alt=""
+        aria-hidden="true"
+        className="pointer-events-none absolute right-[7%] top-8 hidden w-[340px] opacity-70 md:block xl:right-[8%] xl:w-[410px]"
+      />
+      <div className="relative mx-auto max-w-[1540px] px-5 lg:px-8">
         <div className="mb-9 flex items-end justify-between gap-6">
           <div>
             <p className="section-label">Gallery</p>
@@ -23,7 +29,6 @@ export function Gallery() {
             View all
           </a>
         </div>
-
         <div className="grid gap-6 md:h-[500px] md:grid-cols-[0.75fr_2fr_2fr]">
           <div className="grid gap-6 md:grid-rows-2">
             <div className={`${frameClass} h-[220px] md:h-full`}>

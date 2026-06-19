@@ -5,8 +5,8 @@ export function Newsletter() {
   return (
     <MotionSection id="news-events" className="bg-cream py-16 md:py-20">
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
-        <div className="relative min-h-[520px] overflow-hidden rounded-2xl bg-navy p-7 text-white shadow-soft md:aspect-[5040/1936] md:min-h-0 md:p-16">
-          <img src="/images/Frame 308 (1).png" alt="" className="absolute -inset-3 h-[calc(100%+1.5rem)] w-[calc(100%+1.5rem)] max-w-none object-cover opacity-72" />
+        <div className="group relative min-h-[520px] overflow-hidden rounded-2xl bg-navy p-7 text-white shadow-soft md:aspect-[5040/1936] md:min-h-0 md:p-16">
+          <img src="/images/Frame 308 (1).png" alt="" className="progressive-image-zoom absolute -inset-3 h-[calc(100%+1.5rem)] w-[calc(100%+1.5rem)] max-w-none object-cover opacity-72" />
           <div className="absolute inset-0 bg-gradient-to-r from-navy/78 via-navy/35 to-transparent" />
           <div className="relative grid items-center gap-9 lg:grid-cols-[1fr_1.1fr]">
             <div>

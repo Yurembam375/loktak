@@ -21,6 +21,22 @@ body {
   font-family: var(--font-inter), Arial, sans-serif;
 }
 
+button,
+input,
+textarea,
+select {
+  font-family: var(--font-inter), Arial, sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-playfair), Georgia, serif;
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -40,6 +56,7 @@ img {
   align-items: center;
   gap: 0.7rem;
   color: #c6a35b;
+  font-family: var(--font-inter), Arial, sans-serif;
   font-size: 0.72rem;
   font-weight: 800;
   letter-spacing: 0.06em;
@@ -60,4 +77,16 @@ img {
 
 .hide-scrollbar::-webkit-scrollbar {
   display: none;
+}
+
+.progressive-image-zoom {
+  --zoom-base: 1;
+  --zoom-end: 1.12;
+  transform: scale(var(--zoom-base));
+  transition: transform 2800ms ease-in-out;
+  will-change: transform;
+}
+
+.group:hover .progressive-image-zoom {
+  transform: scale(var(--zoom-end));
 }

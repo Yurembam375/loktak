@@ -51,7 +51,10 @@ export function Footer() {
               <MapPin className="mt-1 shrink-0" size={16} />
               <span>
                 <span className="block font-bold text-white">Address</span>
-                Loktak Development Authority Imphal West, Manipur
+                The Secured Office Complex
+                2nd Floor, North Block AT-Line
+                Near 2nd MR Gate
+                Imphal(W) Manipur – 795001
               </span>
             </p>
           </div>

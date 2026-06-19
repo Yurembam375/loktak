@@ -10,6 +10,7 @@ import {
 
 export const navItems = [
   "About Loktak",
+  "Wetland Complex",
   "Acts & Rules",
   "Projects",
   "Conservation",

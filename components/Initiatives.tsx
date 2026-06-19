@@ -29,7 +29,7 @@ export function Initiatives() {
                 <img
                   src={item.image}
                   alt={item.title}
-                  className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                  className="progressive-image-zoom h-full w-full object-cover"
                 />
               </div>
               <div className="self-center">

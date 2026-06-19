@@ -25,11 +25,13 @@ export function Events() {
 
         <div className="mt-20 border-t border-black pt-28">
           <article className="grid gap-12 lg:grid-cols-[0.95fr_0.85fr] lg:items-start lg:gap-32">
-            <img
-              src="/images/world-environment-day.png"
-              alt="World Environment Day illustration"
-              className="aspect-[773/644] w-full object-cover"
-            />
+            <div className="group overflow-hidden">
+              <img
+                src="/images/world-environment-day.png"
+                alt="World Environment Day illustration"
+                className="progressive-image-zoom aspect-[773/644] w-full object-cover"
+              />
+            </div>
 
             <div className="pt-8 lg:pt-20">
               <h2 className="font-serif text-4xl font-bold leading-none tracking-[-0.01em] text-ink md:text-6xl">

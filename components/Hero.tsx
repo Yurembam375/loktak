@@ -2,11 +2,11 @@ import { ArrowRight } from "lucide-react";
 
 export function Hero() {
   return (
-    <section className="relative min-h-[686px] overflow-hidden bg-navy text-white">
+    <section className="group relative min-h-[686px] overflow-hidden bg-navy text-white">
       <img
         src="/images/Frame 375.png"
         alt="Sunrise over Loktak Lake wetlands"
-        className="absolute inset-0 h-full w-full object-cover object-center"
+        className="progressive-image-zoom absolute inset-0 h-full w-full object-cover object-center"
       />
       <div className="absolute inset-0 bg-gradient-to-r from-navy/86 via-navy/44 to-navy/8" />
       <div className="absolute inset-0 bg-gradient-to-t from-navy/28 via-transparent to-transparent" />

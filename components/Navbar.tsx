@@ -4,8 +4,85 @@ import { ChevronDown, Menu, X } from "lucide-react";
 import { useState } from "react";
 import { navItems } from "@/lib/site-data";
 
-const dropdownItems = ["About Loktak", "Acts & Rules", "Projects", "Conservation", "Publications", "Gallery", "News & Events"];
-const actsAndRulesLinks = ["Loktak Protection Act 2006", "Loktak Protection Rules 2008"];
+const dropdownItems = ["About Loktak", "Wetland Complex", "Acts & Rules", "Projects", "Conservation", "Publications", "Gallery", "News & Events"];
+const aboutLinks = [
+  {
+    label: "LDA",
+    href: "/lda/"
+  },
+  {
+    label: "Mission",
+    href: "/mission/"
+  },
+  {
+    label: "Messages",
+    href: "/#messages"
+  }
+];
+const actsAndRulesLinks = [
+  {
+    label: "THE MANIPUR LOKTAK LAKE (PROTECTION) ACT, 2006",
+    pdf: "/pdfs/Loktak Lake Protection Act 2006.pdf"
+  },
+  {
+    label: "THE MANIPUR LOKTAK LAKE (PROTECTION) RULES, 2008",
+    pdf: "/pdfs/Loktak Lake Protection Rules 2008.pdf"
+  }
+];
+const wetlandComplexLinks = [
+  {
+    label: "Manipur River Basin",
+    href: "/manipur-river-basin/"
+  },
+  {
+    label: "Loktak Wetland Complex",
+    href: "/loktak-wetland-complex/"
+  },
+  {
+    label: "Loktak Lake",
+    href: "/loktak-lake/"
+  }
+];
+const newsletterLinks = [
+  {
+    label: "Newsletter Vol 1",
+    pdf: "/pdfs/vol1.pdf"
+  },
+  {
+    label: "Newsletter Vol 2",
+    pdf: "/pdfs/vol2.pdf"
+  },
+  {
+    label: "Newsletter Vol 3",
+    pdf: "/pdfs/vol3.pdf"
+  },
+  {
+    label: "Newsletter Vol 4",
+    pdf: "/pdfs/vol4.pdf"
+  },
+  {
+    label: "Newsletter Vol 5",
+    pdf: "/pdfs/vol5.pdf"
+  },
+  {
+    label: "Newsletter Vol 6",
+    pdf: "/pdfs/vol6.pdf"
+  }
+];
+const publicationMenuItems = [
+  {
+    label: "Loktak – The Atlas of Loktak",
+    pdf: "/pdfs/Loktak-atlas.pdf"
+  },
+  {
+    label: "Newsletter",
+    items: newsletterLinks
+  },
+  {
+    label: "Water Bird Report-2014",
+    pdf: "/pdfs/WB-LDA.pdf"
+  }
+];
 
 function getNavHref(item: string) {
   if (item === "Projects") {
@@ -29,7 +106,11 @@ function getNavHref(item: string) {
 
 export function Navbar() {
   const [open, setOpen] = useState(false);
+  const [aboutOpen, setAboutOpen] = useState(false);
+  const [wetlandOpen, setWetlandOpen] = useState(false);
   const [actsOpen, setActsOpen] = useState(false);
+  const [publicationsOpen, setPublicationsOpen] = useState(false);
+  const [newsletterOpen, setNewsletterOpen] = useState(false);
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-[#08171D66] text-white shadow-lg backdrop-blur-[14px]">
@@ -48,6 +129,84 @@ export function Navbar() {
             const hasDropdown = dropdownItems.includes(item);
             const href = getNavHref(item);
 
+            if (item === "About Loktak") {
+              return (
+                <div key={item} className="relative">
+                  <button
+                    type="button"
+                    className={`inline-flex items-center gap-2 whitespace-nowrap border-b transition hover:text-white ${
+                      aboutOpen ? "border-white text-white" : "border-transparent"
+                    }`}
+                    onClick={() => {
+                      setAboutOpen((value) => !value);
+                      setWetlandOpen(false);
+                      setActsOpen(false);
+                      setPublicationsOpen(false);
+                      setNewsletterOpen(false);
+                    }}
+                    aria-expanded={aboutOpen}
+                  >
+                    {item}
+                    <ChevronDown size={14} strokeWidth={2.5} />
+                  </button>
+
+                  {aboutOpen ? (
+                    <div className="absolute left-1/2 top-12 w-[200px] -translate-x-1/2 rounded-xl bg-[#08171D]/90 px-5 py-4 font-sans text-[12px] font-medium leading-[13.84px] tracking-normal text-white shadow-[0_16px_34px_rgba(0,0,0,0.28)] backdrop-blur-[14px]">
+                      {aboutLinks.map((link) => (
+                        <a
+                          key={link.label}
+                          href={link.href}
+                          className="block rounded-md px-1 py-1.5 transition hover:text-gold"
+                          onClick={() => setAboutOpen(false)}
+                        >
+                          {link.label}
+                        </a>
+                      ))}
+                    </div>
+                  ) : null}
+                </div>
+              );
+            }
+
+            if (item === "Wetland Complex") {
+              return (
+                <div key={item} className="relative">
+                  <button
+                    type="button"
+                    className={`inline-flex items-center gap-2 whitespace-nowrap border-b transition hover:text-white ${
+                      wetlandOpen ? "border-white text-white" : "border-transparent"
+                    }`}
+                    onClick={() => {
+                      setWetlandOpen((value) => !value);
+                      setAboutOpen(false);
+                      setActsOpen(false);
+                      setPublicationsOpen(false);
+                      setNewsletterOpen(false);
+                    }}
+                    aria-expanded={wetlandOpen}
+                  >
+                    {item}
+                    <ChevronDown size={14} strokeWidth={2.5} />
+                  </button>
+
+                  {wetlandOpen ? (
+                    <div className="absolute left-1/2 top-12 w-[236px] -translate-x-1/2 rounded-xl bg-[#08171D]/90 px-5 py-4 font-sans text-[12px] font-medium leading-[13.84px] tracking-normal text-white shadow-[0_16px_34px_rgba(0,0,0,0.28)] backdrop-blur-[14px]">
+                      {wetlandComplexLinks.map((link) => (
+                        <a
+                          key={link.label}
+                          href={link.href}
+                          className="block rounded-md px-1 py-1.5 transition hover:text-gold"
+                          onClick={() => setWetlandOpen(false)}
+                        >
+                          {link.label}
+                        </a>
+                      ))}
+                    </div>
+                  ) : null}
+                </div>
+              );
+            }
+
             if (item === "Acts & Rules") {
               return (
                 <div key={item} className="relative">
@@ -56,7 +215,13 @@ export function Navbar() {
                     className={`inline-flex items-center gap-2 whitespace-nowrap border-b transition hover:text-white ${
                       actsOpen ? "border-white text-white" : "border-transparent"
                     }`}
-                    onClick={() => setActsOpen((value) => !value)}
+                    onClick={() => {
+                      setActsOpen((value) => !value);
+                      setAboutOpen(false);
+                      setWetlandOpen(false);
+                      setPublicationsOpen(false);
+                      setNewsletterOpen(false);
+                    }}
                     aria-expanded={actsOpen}
                   >
                     {item}
@@ -64,17 +229,106 @@ export function Navbar() {
                   </button>
 
                   {actsOpen ? (
-                    <div className="absolute left-1/2 top-12 w-[288px] -translate-x-1/2 rounded-xl bg-[#08171D]/90 px-5 py-4 font-sans text-[12px] font-medium leading-[13.84px] tracking-normal text-white shadow-[0_16px_34px_rgba(0,0,0,0.28)] backdrop-blur-[14px]">
+                    <div className="absolute left-1/2 top-12 w-[420px] -translate-x-1/2 rounded-xl bg-[#08171D]/90 px-6 py-5 font-sans text-[12px] font-medium leading-[13.84px] tracking-normal text-white shadow-[0_16px_34px_rgba(0,0,0,0.28)] backdrop-blur-[14px]">
                       {actsAndRulesLinks.map((link) => (
                         <a
-                          key={link}
-                          href={`/#${link.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`}
-                          className="block rounded-md px-1 py-1.5 transition hover:text-gold"
+                          key={link.label}
+                          href={link.pdf}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="block rounded-md px-1 py-2 font-bold leading-snug transition hover:text-gold"
                           onClick={() => setActsOpen(false)}
                         >
-                          {link}
+                          {link.label}
                         </a>
                       ))}
+                    </div>
+                  ) : null}
+                </div>
+              );
+            }
+
+            if (item === "Publications") {
+              return (
+                <div key={item} className="relative">
+                  <button
+                    type="button"
+                    className={`inline-flex items-center gap-2 whitespace-nowrap border-b transition hover:text-white ${
+                      publicationsOpen ? "border-white text-white" : "border-transparent"
+                    }`}
+                    onClick={() => {
+                      setPublicationsOpen((value) => !value);
+                      setNewsletterOpen(false);
+                      setAboutOpen(false);
+                      setWetlandOpen(false);
+                      setActsOpen(false);
+                    }}
+                    aria-expanded={publicationsOpen}
+                  >
+                    {item}
+                    <ChevronDown size={14} strokeWidth={2.5} />
+                  </button>
+
+                  {publicationsOpen ? (
+                    <div className="absolute left-1/2 top-12 w-[288px] -translate-x-1/2 rounded-xl bg-[#08171D]/90 px-5 py-4 font-sans text-[12px] font-medium leading-[13.84px] tracking-normal text-white shadow-[0_16px_34px_rgba(0,0,0,0.28)] backdrop-blur-[14px] transition duration-200">
+                      <div className="grid gap-2">
+                        <a
+                          href={publicationMenuItems[0].pdf}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="block rounded-md px-1 py-1.5 font-bold transition hover:text-gold"
+                          onClick={() => {
+                            setPublicationsOpen(false);
+                            setNewsletterOpen(false);
+                          }}
+                        >
+                          {publicationMenuItems[0].label}
+                        </a>
+
+                        <div className="relative">
+                          <button
+                            type="button"
+                            className="flex w-full items-center justify-between rounded-md px-1 py-1.5 text-left font-bold transition hover:text-gold"
+                            onClick={() => setNewsletterOpen((value) => !value)}
+                            aria-expanded={newsletterOpen}
+                          >
+                            {publicationMenuItems[1].label}
+                            <ChevronDown size={14} strokeWidth={2.5} className="-rotate-90" />
+                          </button>
+                          {newsletterOpen ? (
+                            <div className="absolute left-full top-0 ml-3 w-[220px] rounded-xl bg-[#08171D]/90 px-5 py-4 text-white shadow-[0_16px_34px_rgba(0,0,0,0.28)] backdrop-blur-[14px] transition duration-200">
+                              {newsletterLinks.map((link) => (
+                                <a
+                                  key={link.label}
+                                  href={link.pdf}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="block rounded-md py-1 font-bold transition hover:text-gold"
+                                  onClick={() => {
+                                    setPublicationsOpen(false);
+                                    setNewsletterOpen(false);
+                                  }}
+                                >
+                                  {link.label}
+                                </a>
+                              ))}
+                            </div>
+                          ) : null}
+                        </div>
+
+                        <a
+                          href={publicationMenuItems[2].pdf}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="block rounded-md px-1 py-1.5 font-bold transition hover:text-gold"
+                          onClick={() => {
+                            setPublicationsOpen(false);
+                            setNewsletterOpen(false);
+                          }}
+                        >
+                          {publicationMenuItems[2].label}
+                        </a>
+                      </div>
                     </div>
                   ) : null}
                 </div>
@@ -104,13 +358,105 @@ export function Navbar() {
         <div className="border-t border-white/10 bg-navy/96 px-5 pb-5 lg:hidden">
           <div className="grid gap-2 pt-3 text-sm text-white/80">
             {navItems.map((item) => {
+              if (item === "About Loktak") {
+                return (
+                  <div key={item}>
+                    <button
+                      type="button"
+                      className="flex w-full items-center justify-between rounded-md px-3 py-2 text-left transition hover:bg-white/8 hover:text-gold"
+                      onClick={() => {
+                        setAboutOpen((value) => !value);
+                        setWetlandOpen(false);
+                        setActsOpen(false);
+                        setPublicationsOpen(false);
+                        setNewsletterOpen(false);
+                      }}
+                      aria-expanded={aboutOpen}
+                    >
+                      {item}
+                      <ChevronDown
+                        size={14}
+                        strokeWidth={2.5}
+                        className={`transition ${aboutOpen ? "rotate-180" : ""}`}
+                      />
+                    </button>
+                    {aboutOpen ? (
+                      <div className="ml-3 grid gap-1 border-l border-white/10 pl-3">
+                        {aboutLinks.map((link) => (
+                          <a
+                            key={link.label}
+                            href={link.href}
+                            className="rounded-md px-3 py-2 text-white/70 transition hover:bg-white/8 hover:text-gold"
+                            onClick={() => {
+                              setAboutOpen(false);
+                              setOpen(false);
+                            }}
+                          >
+                            {link.label}
+                          </a>
+                        ))}
+                      </div>
+                    ) : null}
+                  </div>
+                );
+              }
+
+              if (item === "Wetland Complex") {
+                return (
+                  <div key={item}>
+                    <button
+                      type="button"
+                      className="flex w-full items-center justify-between rounded-md px-3 py-2 text-left transition hover:bg-white/8 hover:text-gold"
+                      onClick={() => {
+                        setWetlandOpen((value) => !value);
+                        setAboutOpen(false);
+                        setActsOpen(false);
+                        setPublicationsOpen(false);
+                        setNewsletterOpen(false);
+                      }}
+                      aria-expanded={wetlandOpen}
+                    >
+                      {item}
+                      <ChevronDown
+                        size={14}
+                        strokeWidth={2.5}
+                        className={`transition ${wetlandOpen ? "rotate-180" : ""}`}
+                      />
+                    </button>
+                    {wetlandOpen ? (
+                      <div className="ml-3 grid gap-1 border-l border-white/10 pl-3">
+                        {wetlandComplexLinks.map((link) => (
+                          <a
+                            key={link.label}
+                            href={link.href}
+                            className="rounded-md px-3 py-2 text-white/70 transition hover:bg-white/8 hover:text-gold"
+                            onClick={() => {
+                              setWetlandOpen(false);
+                              setOpen(false);
+                            }}
+                          >
+                            {link.label}
+                          </a>
+                        ))}
+                      </div>
+                    ) : null}
+                  </div>
+                );
+              }
+
               if (item === "Acts & Rules") {
                 return (
                   <div key={item}>
                     <button
                       type="button"
                       className="flex w-full items-center justify-between rounded-md px-3 py-2 text-left transition hover:bg-white/8 hover:text-gold"
-                      onClick={() => setActsOpen((value) => !value)}
+                      onClick={() => {
+                        setActsOpen((value) => !value);
+                        setAboutOpen(false);
+                        setWetlandOpen(false);
+                        setPublicationsOpen(false);
+                        setNewsletterOpen(false);
+                      }}
                       aria-expanded={actsOpen}
                     >
                       {item}
@@ -124,17 +470,100 @@ export function Navbar() {
                       <div className="ml-3 grid gap-1 border-l border-white/10 pl-3">
                         {actsAndRulesLinks.map((link) => (
                           <a
-                            key={link}
-                            href={`/#${link.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`}
+                            key={link.label}
+                            href={link.pdf}
+                            target="_blank"
+                            rel="noreferrer"
                             className="rounded-md px-3 py-2 text-white/70 transition hover:bg-white/8 hover:text-gold"
                             onClick={() => {
                               setActsOpen(false);
                               setOpen(false);
                             }}
                           >
-                            {link}
+                            {link.label}
                           </a>
                         ))}
+                      </div>
+                    ) : null}
+                  </div>
+                );
+              }
+
+              if (item === "Publications") {
+                return (
+                  <div key={item}>
+                    <button
+                      type="button"
+                      className="flex w-full items-center justify-between rounded-md px-3 py-2 text-left transition hover:bg-white/8 hover:text-gold"
+                      onClick={() => {
+                        setPublicationsOpen((value) => !value);
+                        setNewsletterOpen(false);
+                        setAboutOpen(false);
+                        setWetlandOpen(false);
+                        setActsOpen(false);
+                      }}
+                      aria-expanded={publicationsOpen}
+                    >
+                      {item}
+                      <ChevronDown
+                        size={14}
+                        strokeWidth={2.5}
+                        className={`transition ${publicationsOpen ? "rotate-180" : ""}`}
+                      />
+                    </button>
+                    {publicationsOpen ? (
+                      <div className="ml-3 grid gap-1 border-l border-white/10 pl-3">
+                        <a
+                          href={publicationMenuItems[0].pdf}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="rounded-md px-3 py-2 font-bold text-white transition hover:bg-white/8 hover:text-gold"
+                          onClick={() => setOpen(false)}
+                        >
+                          {publicationMenuItems[0].label}
+                        </a>
+
+                        <div>
+                          <button
+                            type="button"
+                            className="flex w-full items-center justify-between rounded-md px-3 py-2 text-left font-bold text-white transition hover:bg-white/8 hover:text-gold"
+                            onClick={() => setNewsletterOpen((value) => !value)}
+                            aria-expanded={newsletterOpen}
+                          >
+                            {publicationMenuItems[1].label}
+                            <ChevronDown
+                              size={14}
+                              strokeWidth={2.5}
+                              className={`transition ${newsletterOpen ? "rotate-180" : ""}`}
+                            />
+                          </button>
+                          {newsletterOpen ? (
+                            <div className="ml-3 grid gap-1 border-l border-white/10 pl-3">
+                              {newsletterLinks.map((link) => (
+                                <a
+                                  key={link.label}
+                                  href={link.pdf}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="rounded-md px-3 py-2 font-bold text-white transition hover:bg-white/8 hover:text-gold"
+                                  onClick={() => setOpen(false)}
+                                >
+                                  {link.label}
+                                </a>
+                              ))}
+                            </div>
+                          ) : null}
+                        </div>
+
+                        <a
+                          href={publicationMenuItems[2].pdf}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="rounded-md px-3 py-2 font-bold text-white transition hover:bg-white/8 hover:text-gold"
+                          onClick={() => setOpen(false)}
+                        >
+                          {publicationMenuItems[2].label}
+                        </a>
                       </div>
                     ) : null}
                   </div>

@@ -14,7 +14,6 @@ export function Projects() {
               Activities and management interventions.
             </p>
           </div>
-
           <div className="hidden h-[264px] w-px bg-black/70 md:block" />
 
           <p className="max-w-[980px] text-base leading-8 text-ink/70">
@@ -26,11 +25,13 @@ export function Projects() {
         </div>
 
         <article className="mt-16 grid gap-12 lg:grid-cols-[0.95fr_0.85fr] lg:items-start lg:gap-32">
-          <img
-            src="/images/project-stap.png"
-            alt="Short Term Action Plan project at Loktak Lake"
-            className="aspect-[950/739] w-full object-cover"
-          />
+          <div className="group overflow-hidden">
+            <img
+              src="/images/project-stap.png"
+              alt="Short Term Action Plan project at Loktak Lake"
+              className="progressive-image-zoom aspect-[950/739] w-full object-cover"
+            />
+          </div>
 
           <div className="h-[70vh] overflow-y-scroll pt-8 lg:pt-28">
             <h2 className="font-serif text-4xl font-bold leading-none tracking-[-0.01em] text-ink md:text-6xl">
