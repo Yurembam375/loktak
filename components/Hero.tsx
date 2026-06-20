@@ -11,7 +11,7 @@ export function Hero() {
       <div className="absolute inset-0 bg-gradient-to-r from-navy/86 via-navy/44 to-navy/8" />
       <div className="absolute inset-0 bg-gradient-to-t from-navy/28 via-transparent to-transparent" />
 
-      <div className="relative flex min-h-[686px] items-center px-[6.95vw] pb-12 pt-[88px]">
+      <div className="relative mx-auto flex min-h-[686px] w-full max-w-[1440px] items-center px-6 pb-[80px] pt-[168px] md:px-12 xl:px-[100px]">
         <div className="w-full max-w-[620px]">
           <p className="section-label mb-5 text-[16px] leading-none tracking-normal">
             Northeast India&apos;s largest freshwater lake

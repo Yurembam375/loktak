@@ -3,8 +3,8 @@ import { MotionSection } from "./MotionSection";
 
 export function Newsletter() {
   return (
-    <MotionSection id="news-events" className="bg-cream py-16 md:py-20">
-      <div className="mx-auto max-w-7xl px-5 lg:px-8">
+    <MotionSection id="news-events" className="bg-cream">
+      <div className="mx-auto w-full max-w-[1440px] px-6 py-[80px] md:px-12 xl:px-[100px]">
         <div className="group relative min-h-[520px] overflow-hidden rounded-2xl bg-navy p-7 text-white shadow-soft md:aspect-[5040/1936] md:min-h-0 md:p-16">
           <img src="/images/Frame 308 (1).png" alt="" className="progressive-image-zoom absolute -inset-3 h-[calc(100%+1.5rem)] w-[calc(100%+1.5rem)] max-w-none object-cover opacity-72" />
           <div className="absolute inset-0 bg-gradient-to-r from-navy/78 via-navy/35 to-transparent" />

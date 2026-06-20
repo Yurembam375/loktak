@@ -3,8 +3,8 @@ import { footerLinks } from "@/lib/site-data";
 
 export function Footer() {
   return (
-    <footer id="contact" className="bg-navy py-16 text-white">
-      <div className="mx-auto grid max-w-7xl gap-10 px-5 md:grid-cols-[1.4fr_1fr_1fr_1.2fr] lg:px-8">
+    <footer id="contact" className="bg-navy text-white">
+      <div className="mx-auto grid w-full max-w-[1440px] gap-10 px-6 py-[80px] md:grid-cols-[1.4fr_1fr_1fr_1.2fr] md:px-12 xl:px-[100px]">
         <div>
           <a href="#" className="flex items-center gap-3">
             <span className="grid size-32 place-items-center overflow-hidden">

@@ -4,8 +4,8 @@ import { MotionSection } from "./MotionSection";
 
 export function Initiatives() {
   return (
-    <MotionSection id="initiatives" className="bg-white py-16 md:py-20">
-      <div className="mx-auto max-w-7xl px-5 lg:px-8">
+    <MotionSection id="initiatives" className="bg-white">
+      <div className="mx-auto w-full max-w-[1440px] px-6 py-[80px] md:px-12 xl:px-[100px]">
         <div className="mb-10 flex items-end justify-between gap-6">
           <div>
             <p className="section-label">Our initiatives</p>
@@ -22,7 +22,7 @@ export function Initiatives() {
           </a>
         </div>
 
-        <div className="grid gap-x-16 gap-y-8 md:grid-cols-2">
+        <div className="grid gap-x-10 gap-y-8 md:grid-cols-2">
           {initiatives.map((item) => (
             <article key={item.title} className="group grid grid-cols-[110px_1fr] gap-5 sm:grid-cols-[136px_1fr]">
               <div className="h-28 overflow-hidden rounded-xl bg-paper shadow-card">

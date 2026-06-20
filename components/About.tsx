@@ -4,9 +4,9 @@ import { MotionSection } from "./MotionSection";
 
 export function About() {
   return (
-    <MotionSection id="about-loktak" className="bg-paper py-16 md:py-20">
-      <div className="mx-auto max-w-7xl px-5 lg:px-8">
-        <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_1fr] lg:gap-16">
+    <MotionSection id="about-loktak" className="bg-paper">
+      <div className="mx-auto w-full max-w-[1440px] px-6 py-[80px] md:px-12 xl:px-[100px]">
+        <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_1fr]">
           <div className="group overflow-hidden rounded-[22px] shadow-soft">
             <img src="/images/ChatGPT Image May 7, 2026, 02_17_01 PM 2.png" alt="Floating phumdi on Loktak Lake" className="progressive-image-zoom h-full min-h-[320px] w-full object-cover" />
           </div>

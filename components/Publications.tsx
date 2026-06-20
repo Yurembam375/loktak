@@ -18,9 +18,15 @@ export function Publications() {
   };
 
   return (
-    <MotionSection id="publications" className="overflow-hidden bg-cream py-16 md:py-20">
-      <div className="mx-auto max-w-7xl px-5 lg:px-8">
-        <div className="mb-9 flex items-end justify-between gap-6">
+    <MotionSection id="publications" className="relative overflow-hidden bg-cream">
+      {/* <img
+        src="/images/publications-mountain-background.png"
+        alt=""
+        aria-hidden="true"
+        className="pointer-events-none absolute left-1/2 top-[190px] hidden w-full max-w-[1180px] -translate-x-1/2 opacity-55 md:block"
+      /> */}
+      <div className="relative mx-auto w-full max-w-[1440px] px-6 py-[80px] md:px-12 xl:px-[100px]">
+        <div className="mb-10 flex items-end justify-between gap-6">
           <div>
             <p className="section-label">Publications & Research</p>
             <h2 className="mt-3 font-serif text-4xl font-bold leading-tight tracking-[-0.01em] text-ink md:text-6xl">
@@ -36,25 +42,23 @@ export function Publications() {
           </a>
         </div>
 
-        <div className="mb-8 flex gap-3">
+        <div className="mb-10 flex gap-3">
           <button
             type="button"
-            className={`rounded-full px-16 py-3 text-sm font-bold transition ${
-              activeType === "newsletter"
+            className={`rounded-full px-16 py-3 text-sm font-bold transition ${activeType === "newsletter"
                 ? "bg-sky-700 text-white shadow-card"
                 : "border border-teal/45 bg-white text-teal-dark hover:bg-teal hover:text-white"
-            }`}
+              }`}
             onClick={() => setActiveType("newsletter")}
           >
             Newsletter
           </button>
           <button
             type="button"
-            className={`rounded-full px-16 py-3 text-sm font-bold transition ${
-              activeType === "books"
+            className={`rounded-full px-16 py-3 text-sm font-bold transition ${activeType === "books"
                 ? "bg-sky-700 text-white shadow-card"
                 : "border border-teal/45 bg-white text-teal-dark hover:bg-teal hover:text-white"
-            }`}
+              }`}
             onClick={() => setActiveType("books")}
           >
             Books
