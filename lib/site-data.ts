@@ -10,12 +10,12 @@ import {
 
 export const navItems = [
   "About Loktak",
-  "Wetland Complex",
+  // "Wetland Complex",
   "Acts & Rules",
   "Projects",
-  "Conservation",
-  "Publications",
-  "Gallery",
+  // "Conservation",
+  // "Publications",
+  // "Gallery",
   "News & Events",
   "Notifications",
   "Contact"

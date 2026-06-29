@@ -1,6 +1,5 @@
 {
-  "/notifications/page": "app/notifications/page.js",
-  "/events/page": "app/events/page.js",
+  "/icon.png/route": "app/icon.png/route.js",
   "/projects/page": "app/projects/page.js",
   "/page": "app/page.js"
 }

@@ -45,6 +45,51 @@ type LayoutConfig<Route extends LayoutRoutes = LayoutRoutes> = {
   type __Unused = __Check
 }
 
+// Validate ../../app/lda/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/lda">> = Specific
+  const handler = {} as typeof import("../../app/lda/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../app/loktak-lake/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/loktak-lake">> = Specific
+  const handler = {} as typeof import("../../app/loktak-lake/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../app/loktak-wetland-complex/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/loktak-wetland-complex">> = Specific
+  const handler = {} as typeof import("../../app/loktak-wetland-complex/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../app/manipur-river-basin/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/manipur-river-basin">> = Specific
+  const handler = {} as typeof import("../../app/manipur-river-basin/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../app/mission/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/mission">> = Specific
+  const handler = {} as typeof import("../../app/mission/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
 // Validate ../../app/notifications/page.tsx
 {
   type __IsExpected<Specific extends AppPageConfig<"/notifications">> = Specific

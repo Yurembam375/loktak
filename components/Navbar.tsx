@@ -170,9 +170,8 @@ export function Navbar() {
                 <div key={item} className="relative">
                   <button
                     type="button"
-                    className={`inline-flex items-center gap-2 whitespace-nowrap border-b transition hover:text-white ${
-                      aboutOpen ? "border-white text-white" : "border-transparent"
-                    }`}
+                    className={`inline-flex items-center gap-2 whitespace-nowrap border-b transition hover:text-white ${aboutOpen ? "border-white text-white" : "border-transparent"
+                      }`}
                     onClick={() => {
                       toggleDropdown("about");
                     }}
@@ -205,9 +204,8 @@ export function Navbar() {
                 <div key={item} className="relative">
                   <button
                     type="button"
-                    className={`inline-flex items-center gap-2 whitespace-nowrap border-b transition hover:text-white ${
-                      wetlandOpen ? "border-white text-white" : "border-transparent"
-                    }`}
+                    className={`inline-flex items-center gap-2 whitespace-nowrap border-b transition hover:text-white ${wetlandOpen ? "border-white text-white" : "border-transparent"
+                      }`}
                     onClick={() => {
                       toggleDropdown("wetland");
                     }}
@@ -240,9 +238,8 @@ export function Navbar() {
                 <div key={item} className="relative">
                   <button
                     type="button"
-                    className={`inline-flex items-center gap-2 whitespace-nowrap border-b transition hover:text-white ${
-                      actsOpen ? "border-white text-white" : "border-transparent"
-                    }`}
+                    className={`inline-flex items-center gap-2 whitespace-nowrap border-b transition hover:text-white ${actsOpen ? "border-white text-white" : "border-transparent"
+                      }`}
                     onClick={() => {
                       toggleDropdown("acts");
                     }}
@@ -277,9 +274,8 @@ export function Navbar() {
                 <div key={item} className="relative">
                   <button
                     type="button"
-                    className={`inline-flex items-center gap-2 whitespace-nowrap border-b transition hover:text-white ${
-                      publicationsOpen ? "border-white text-white" : "border-transparent"
-                    }`}
+                    className={`inline-flex items-center gap-2 whitespace-nowrap border-b transition hover:text-white ${publicationsOpen ? "border-white text-white" : "border-transparent"
+                      }`}
                     onClick={() => {
                       toggleDropdown("publications");
                     }}
@@ -315,18 +311,18 @@ export function Navbar() {
                           {newsletterOpen ? (
                             <div className="absolute left-full top-0 ml-3 w-[220px] rounded-xl bg-[#08171D]/90 px-6 py-5 text-white shadow-[0_16px_34px_rgba(0,0,0,0.28)] backdrop-blur-[14px] transition duration-200">
                               <div className="grid gap-2">
-                              {newsletterLinks.map((link) => (
-                                <a
-                                  key={link.label}
-                                  href={link.pdf}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  className="block rounded-md py-1 font-bold transition hover:text-gold"
-                                  onClick={closeDropdowns}
-                                >
-                                  {link.label}
-                                </a>
-                              ))}
+                                {newsletterLinks.map((link) => (
+                                  <a
+                                    key={link.label}
+                                    href={link.pdf}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="block rounded-md py-1 font-bold transition hover:text-gold"
+                                    onClick={closeDropdowns}
+                                  >
+                                    {link.label}
+                                  </a>
+                                ))}
                               </div>
                             </div>
                           ) : null}
